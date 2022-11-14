@@ -9,6 +9,22 @@ services:
     environment:
       - TZ
       - "discovery.type=single-node"
+  apigw:
+    build: 
+      context: ./apigw/
+      dockerfile: ./Dockerfile
+    ports:
+      - 80:80
+    environment:
+      - TZ
+  napui:
+    build: 
+      context: ./napui/
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:80
+    environment:
+      - TZ
   logstash:
     image: docker.elastic.co/logstash/logstash:7.17.0
     volumes:
