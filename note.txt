@@ -1,0 +1,8 @@
+For the NGINX logs - need to add the below with snippet:
+
+Gateway snippet:
+log_format syslog-adasha '"@timestamp"="$time_iso8601",' '"@source"="$server_addr",' '"hostname"="$hostname",' '"ip"="$http_x_forwarded_for",' '"client"="$remote_addr",' '"request_method"="$request_method",' '"scheme"="$scheme",' '"domain"="$server_name",' '"referer"="$http_referer",' '"request"="$request_uri",' '"args"="$args",' '"size"=$body_bytes_sent,' '"status"= $status,' '"responsetime"=$request_time,' '"upstreamtime"="$upstream_response_time",' '"upstreamaddr"="$upstream_addr",' '"http_user_agent"="$http_user_agent",' '"https"="$https"';
+
+Componnent snippet:
+access_log syslog:server=172.17.0.1:516,tag=nginx_access syslog-adasha;
+error_log syslog:server=172.17.0.1:516,tag=nginx_error;
