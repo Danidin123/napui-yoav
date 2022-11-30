@@ -6,3 +6,9 @@ log_format syslog-adasha '"@timestamp"="$time_iso8601",' '"@source"="$server_add
 Componnent snippet:
 access_log syslog:server=172.17.0.1:516,tag=nginx_access syslog-adasha;
 error_log syslog:server=172.17.0.1:516,tag=nginx_error;
+
+Grafana data source:
+logstash-nginx-access*
+logstash-nginx-error*
+
+ 
