@@ -1,8 +1,8 @@
 #!/bin/bash
 
-TZ=Asia/Israel && sudo docker compose up -d
+#TZ=Asia/Israel && sudo docker compose up -d
 echo "wating for containers will be ready"
-sleep 60
+#sleep 60
 
 echo "run step1"
 step1="$(curl -sS -X PUT 'http://localhost:9200/signatures/' > tmp.html)"

@@ -1,5 +1,9 @@
 
 version: "2.4"
+volumes:
+  fpm-volume:
+  grafana-volume:
+  elasticsearch-volume:
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
@@ -9,6 +13,8 @@ services:
     environment:
       - TZ
       - "discovery.type=single-node"
+    volumes:
+      -  elasticsearch-volume:/usr/share/elasticsearch/data
   apigw:
     build: 
       context: ./apigw/
@@ -23,6 +29,8 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 8080:80
+    volumes:
+      - fpm-volume:/etc/fpm
     environment:
       - TZ
   logstash:
@@ -37,6 +45,8 @@ services:
     image: grafana/grafana-oss:9.2.1
     ports:
       - 3000:3000
+    volumes:
+      - grafana-volume:/var/lib/grafana
     environment:
       - TZ
   logstash-nginx-logs:
